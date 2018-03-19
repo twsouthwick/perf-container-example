@@ -11,10 +11,10 @@ RUN dotnet nuget locals all -l
 FROM base as production
 
 COPY --from=builder /app .
-COPY --from=builder /root/.nuget/packages/runtime.linux-x64.microsoft.netcore.app/2.0.5/tools/crossgen /usr/share/dotnet/shared/Microsoft.NETCore.App/2.0.0/
+COPY --from=builder /root/.nuget/packages/runtime.linux-x64.microsoft.netcore.app/2.0.0/tools/crossgen /usr/share/dotnet/shared/Microsoft.NETCore.App/2.0.5/
 
 # Set tracing environment variables.
 ENV COMPlus_PerfMapEnabled 1
 ENV COMPlus_EnableEventLog 1
 
-ENTRYPOINT ["dotnet", "ConsoleApp7.dll"]
+ENTRYPOINT ["dotnet", "sample.dll"]
